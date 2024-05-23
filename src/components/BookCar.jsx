@@ -46,6 +46,9 @@ function BookCar() {
 
   const handleAge = (e) => {
     setAge(e.target.value);
+    if(age<0){
+      setAge(0)
+    }
   }
 
   const handleEmail = (e) => {
@@ -63,7 +66,15 @@ function BookCar() {
   const handleZip = (e) => {
     setZipCode(e.target.value);
   }
-
+  const [todayDate, setTodayDate] = useState('');
+  useEffect(() => {
+    const today = new Date();
+    const day = ("0" + today.getDate()).slice(-2);
+    const month = ("0" + (today.getMonth() + 1)).slice(-2);
+    const year = today.getFullYear();
+    const formattedDate = `${year}-${month}-${day}`;
+    setTodayDate(formattedDate);
+  }, []);
   // open model when all inputs are fulfilled
   const openModal = (e) => {
     e.preventDefault();
@@ -72,13 +83,13 @@ function BookCar() {
     
     const pickDate = new Date(pickTime);
     const dropDate = new Date(dropTime);
-  
+    
     if (
-      pickUp === "" ||
-      dropOff === "" ||
-      pickTime === "" ||
-      dropTime === "" ||
-      carType === ""
+      pickUp ==="" ||
+      dropOff ==="" ||
+      pickTime ==="" ||
+      dropTime ==="" ||
+      carType ===""
     ) {
       errorMsg.style.display = "flex";
       dateErrorMsg.style.display = "none";
@@ -108,6 +119,20 @@ function BookCar() {
     setModal(!modal);
     const doneMsg = document.querySelector(".booking-done");
     doneMsg.style.display = "flex";
+    const pickDate = new Date(pickTime);
+    const dropDate = new Date(dropTime);
+
+    if (
+      name==""&&
+      pickUp ==""&&
+      dropOff =="" &&
+      pickTime ==""&&
+      dropTime ==""&&
+      carType ==""
+    ) {
+      alert("All Fields Required")
+      
+    } 
   };
 
   // taking value of booking inputs
@@ -248,6 +273,7 @@ function BookCar() {
                     value={pickTime}
                     onChange={handlePickTime}
                     type="date"
+                    min={todayDate}
                   ></input>
                 </div>
 
@@ -398,8 +424,7 @@ function BookCar() {
                 <input
                   value={age}
                   onChange={handleAge}
-                  type="number"
-                  placeholder="18"
+                  type="text"
                 ></input>
                 <p className="error-modal ">This field is required.</p>
               </span>

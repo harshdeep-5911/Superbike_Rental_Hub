@@ -10,7 +10,6 @@ import { TestimonialsPage } from "./Pages/TestimonialsPage";
 import Contact from "./Pages/Contact";
 import Form from "./Pages/Form";
 import Signup from "./Pages/Signup";
-
 function App() {
   return (
     <>
@@ -28,5 +27,4 @@ function App() {
     </>
   );
 }
-
 export default App;

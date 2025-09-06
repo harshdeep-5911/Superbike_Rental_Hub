@@ -117,7 +117,7 @@ function LoginPage() {
     const storedEmail = localStorage.getItem('email');
     const storedPassword = localStorage.getItem('password');
 
-    if (email === storedEmail && password === storedPassword) {
+    if (email.toLowerCase() === storedEmail && password === storedPassword) {
       console.log("Login successful!");
       if (rememberMe) {
         localStorage.setItem('rememberMe', true);

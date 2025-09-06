@@ -100,7 +100,7 @@ function SignUpPage() {
 
     localStorage.setItem('email', email);
 
-    navigate('/login');
+    navigate('/Form');
   };
 
   return (

@@ -93,12 +93,20 @@ function SignUpPage() {
       alert('Passwords do not match!');
       return;
     }
+if (password !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
 
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Confirm Password:', confirmPassword);
+  console.log('Email:', email);
+  console.log('Password:', password);
+  console.log('Confirm Password:', confirmPassword);
 
-    localStorage.setItem('email', email);
+  // Save both email & password
+  localStorage.setItem('email', email.toLowerCase()); 
+  localStorage.setItem('password', password);
+
+  alert('Signup successful! Please log in.');
 
     navigate('/Form');
   };
